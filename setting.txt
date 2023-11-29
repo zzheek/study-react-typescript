@@ -38,7 +38,85 @@ react-router와 같은 외부 라이브러리를 사용하지 않고도 페이�
 설치: npm install -g create-react-app
 확인: npx create-react-app --version
 프로젝트 생성: npx create-react-app my-app
-프로젝트 실행: cd my-app -> npm startc
+프로젝트 실행: cd my-app -> npm start
+
+
+
+#### 실전에서 자주 사용되는 라이브러리 설치 ####
+1. create-react-app와 typescript
+템플릿 옵션 적용된 프로젝트 간단 생성
+npx create-react-app my-app-typescript --template=typescript
+
+
+2. CSS-in-JS(Emotion)
+*CSS 설정
+npm install --save @emotion/react @emotion/styled
+import styled from '@emotion/styled';
+const Container = Styled.div``;
+
+3. 절대 경로로 컴포넌트 추가
+config.json 파일에 "baseUrl": "src" 추가
+
+3. Prettier : 코드 포맷터
+JS, CSS, JSON 등을 지원
+npm install --save-dev prettier
+
+.prettierrc.js 파일에
+module.exports = {
+  singleQuote: true,      // 싱글쿼트를 주로 사용하도록 설정
+  trainlingComma: 'all',  // 콤파를 추가할 수 있다면, 콤마를 추가
+  prinWidth: 100,         // 한 줄에 작성할 수 있는 최대 코드 문자 수를 설정
+};
+
+.package.json 수정
+  "scripts": {
+    ...
+    "format": "prettier --check ./src",      // 설정한 내용에 위반되는 내용이 있는지 검사
+    "format:fix": "prettier --write ./src"   // 잘못된 내용을 설정한 내용에 맞게 자동으로 수정
+  },
+
+----> 
+npm run format
+npm run format:fix
+
+5. ESLint
+:JS의 코드를 분석하고 잠재적인 오류나 버그를 찾는 데 도움을 주는 정적 분석 툴.
+npm install eslint --save-dev
+
+.eslintrc.js 파일에 추가
+// 리액트 버전 인식
+settings: {
+      react: {
+        version: 'detect',
+      },  
+    },
+
+// import React from 'react'를 항상 사용하도록 하는 규칙을 사용하지 않도록 하기 위해 off
+"rules": {
+        'react/react-in-jsx-scope': 'off',
+    },
+
+--실행
+package.json scripts에 추가
+"lint": "eslint ./src",
+"lint:fix": "eslint --fix ./src"
+
+npm run lint
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

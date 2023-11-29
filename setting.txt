@@ -1,0 +1,45 @@
+# 리액트 개발환경
+-윈도우 기반
+1.초콜리티 설치
+2.노드 설치
+
+-맥 기반
+1.홈브루 설치
+2.노드 설치
+
+
+# 리액트 시작하는 방법
+1.create-react-app 사용
+Webpack or Babel을 설정하여 개발하는 방법이 어려워 페이스북에서 개발해 배포한 CLI툴.
+
+2.스크립트 태그 추가
+<body>
+  <div id="app"></div>
+  <!-- ... 다른 HTML ... -->
+
+  <!-- React를 실행. -->
+  <!-- 주의: 사이트를 배포할 때는 "development.js"를 "production.min.js"로 대체하세요. -->
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+
+  <!-- 만든 React 컴포넌트를 실행. -->
+  <script src="/app.js"></script>
+</body>
+
+3.Webpack or Babel 설정
+크로스 브라우징 문제와 최샌 ECMAScript, TypeScript 등을 사용하여 진행하기 위해서 필요.
+
+4.Next.js 프레임워크
+리액트로 웹 서비스를 만들 때에 주로 사용되는 기능들을 함께 묶어 제공하는 리액트 프레임워크,
+react-router와 같은 외부 라이브러리를 사용하지 않고도 페이지 전환 기능을 사용할 수 있음.
+
+
+# create-react-app
+설치: npm install -g create-react-app
+확인: npx create-react-app --version
+프로젝트 생성: npx create-react-app my-app
+프로젝트 실행: cd my-app -> npm startc
+
+
+
+

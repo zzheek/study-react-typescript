@@ -1,0 +1,67 @@
+# 클래스 컴포넌트의 라이프사이클 함수
+1. constructor
+-클래스 컴포넌트는 클래스이기 때문에 생성자 함수 사용 가능
+-State를 사용하지 않으면 생성자 함수 생략 가능
+-생성자 함수를 사용할 때에는 반드시 super함수를 호출하여 상속받은 클래스 생성자 호출해야 함
+-생성자 함수는 해당 컴포넌트가 생성될 시 한번만 호출됨
+
+2. render
+-클래스 컴포넌트의 화면 표시 부분을 정의하는데 사용, 즉 렌더 함수의 반환값이 화면에 표시
+-부모 컴포넌트로부터 받는 Props값이 변경되거나 클래스 컴포넌트 안에서 this.setState를 사용하여 
+State 값이 변경되어 화면 갱신이 필요할때마다 호출
+-this.setState를 사용하여 State값을 직접 변경할 경우 무한 루프에 빠질 수 있으므로 주의해야 함
+
+3. getDerivedStateFromProps 
+-부모 컴포넌트로부터 받은 Props,State를 동기화 할때 사용
+-Props로 State를 설정하고 싶을 때 State에 설정하고 싶은 값을 반환하도록 설정
+-부모로부터 전달받은 Props에 의해 State값을 변경할 필요가 없는 경우에는 null을 반환
+-컴포넌트가 생성될 때에 Props에 의해 State값을 결정해야하므로 한 번 호출, 
+이후 Props와 State를 동기화해야 하므로 Props가 변경될 때마다 호출
+
+4. componentDidMount
+-클래스 컴포넌트가 처음으로 화면에 표시된 후 이 함수가 호출됨
+즉, render 함수가 처음 한 번 호출된 후 이 함수가 호출됨
+-화면에 처음 표시된 후 한 번만 호출되므로 Ajax를 통한 데이터 습득이나 다른 JS 라이브러리와 연동을 수행할 때에 주료 사용됨
+-render함수와 달리 this.setState를 직접 호출할 수 있으며, Ajax를 통해 서버로부터 전달받은 데이터를 this.setState를 사용하여 State를
+설정하기에 가장 적합
+
+5. shouldComponentUpdate
+-Props,State 값이 변경됐지만 다시 화면을 그리고 싶지 않은 경우 사용하여 리렌더링을 제어
+-이 함수를 사용하여  데이터를 비교하고 불필요한 리렌더링을 제어하여 좀 더 성능 좋은 앱을 제작할 수 있음
+
+6. getSnapshotBeforeUpdate
+-Props,State 값이 변경되어 render함수가 호출된 후 반환값이 화면에 반영되기 직전에 호출됨
+-이 함수에서 반환하는 값은 componentDidUpdate의 세번째 매개변수로 전달됨
+-이 함수를 선언하고 componentDidUpdate함수를 선언하지 않는 경우에는 warning이 발생함
+
+7. componentDidUpdate
+-처음 화면에 표시될 때에는 실행되지 않지만 Props,State가 변경되어 화면이 갱신될 때마다 render가 호출된 후 매번 호출됨
+-getSnapshotBeforeUpdate와 함께 사용하여 스크롤을 수동으로 고정시킬 때 활용됨
+-this.setState를 사용하여 State값을 직접 변경할 경우 무한 루프에 빠질 수 있으므로 주의해야 함
+
+8. componentWillUnmount
+-해당 컴포넌트가 화면에서 완전히 사라진 후 호출되는 함수
+-componentDidMount에서 연동한 JS 라이브러리를 해체하거나 타이머를 사용하여 해제할 때에 사용
+-클래스 컴포넌트가 화면에서 완전히 사라진 후 호출되므로 State값을 변경하기 위한 this.setState를 호출하면
+갱신하고자 하는 컴포넌트가 사라진 후이기 때문에 경고가 발생할 수 있음
+
+9. conponentDidCatch
+-render의 JSX부분에서 발생하는 에러를 예외 처리할 수 있게 도와주는 라이프사이클 함수
+
+10. 호출 순서
+컴포넌트가 생성될 때:
+constructor - getDerivedStateFromProps - render - componentDidMount
+컴포넌트의 Props가 변경될 때:
+getDerivedStateFromProps - shouldComponentUpdate - render - getSnapshotBeforeUpdate - componentDidUpdate
+컴포넌트의 State가 변경될 때:
+shouldComponentUpdate - render - getSnapshotBeforeUpdate - componentDidUpdate
+컴포넌트의 렌더링 중 에러가 발생할 때:
+conponentDidCatch
+컴포넌트의 화면에서 제거될 때:
+componentWillUnmount
+
+
+
+
+
+

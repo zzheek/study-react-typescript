@@ -1,0 +1,123 @@
+# 리액트 개발환경
+-윈도우 기반
+1.초콜리티 설치
+2.노드 설치
+
+-맥 기반
+1.홈브루 설치
+2.노드 설치
+
+
+# 리액트 시작하는 방법
+1.create-react-app 사용
+Webpack or Babel을 설정하여 개발하는 방법이 어려워 페이스북에서 개발해 배포한 CLI툴.
+
+2.스크립트 태그 추가
+<body>
+  <div id="app"></div>
+  <!-- ... 다른 HTML ... -->
+
+  <!-- React를 실행. -->
+  <!-- 주의: 사이트를 배포할 때는 "development.js"를 "production.min.js"로 대체하세요. -->
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+
+  <!-- 만든 React 컴포넌트를 실행. -->
+  <script src="/app.js"></script>
+</body>
+
+3.Webpack or Babel 설정
+크로스 브라우징 문제와 최샌 ECMAScript, TypeScript 등을 사용하여 진행하기 위해서 필요.
+
+4.Next.js 프레임워크
+리액트로 웹 서비스를 만들 때에 주로 사용되는 기능들을 함께 묶어 제공하는 리액트 프레임워크,
+react-router와 같은 외부 라이브러리를 사용하지 않고도 페이지 전환 기능을 사용할 수 있음.
+
+
+# create-react-app
+설치: npm install -g create-react-app
+확인: npx create-react-app --version
+프로젝트 생성: npx create-react-app my-app
+프로젝트 실행: cd my-app -> npm start
+
+
+
+#### 실전에서 자주 사용되는 라이브러리 설치 ####
+1. create-react-app와 typescript
+템플릿 옵션 적용된 프로젝트 간단 생성
+npx create-react-app my-app-typescript --template=typescript
+
+
+2. CSS-in-JS(Emotion)
+*CSS 설정
+npm install --save @emotion/react @emotion/styled
+import styled from '@emotion/styled';
+const Container = Styled.div``;
+
+3. 절대 경로로 컴포넌트 추가
+config.json 파일에 "baseUrl": "src" 추가
+
+3. Prettier : 코드 포맷터
+JS, CSS, JSON 등을 지원
+npm install --save-dev prettier
+
+.prettierrc.js 파일에
+module.exports = {
+  singleQuote: true,      // 싱글쿼트를 주로 사용하도록 설정
+  trainlingComma: 'all',  // 콤파를 추가할 수 있다면, 콤마를 추가
+  prinWidth: 100,         // 한 줄에 작성할 수 있는 최대 코드 문자 수를 설정
+};
+
+.package.json 수정
+  "scripts": {
+    ...
+    "format": "prettier --check ./src",      // 설정한 내용에 위반되는 내용이 있는지 검사
+    "format:fix": "prettier --write ./src"   // 잘못된 내용을 설정한 내용에 맞게 자동으로 수정
+  },
+
+----> 
+npm run format
+npm run format:fix
+
+5. ESLint
+:JS의 코드를 분석하고 잠재적인 오류나 버그를 찾는 데 도움을 주는 정적 분석 툴.
+npm install eslint --save-dev
+
+.eslintrc.js 파일에 추가
+// 리액트 버전 인식
+settings: {
+      react: {
+        version: 'detect',
+      },  
+    },
+
+// import React from 'react'를 항상 사용하도록 하는 규칙을 사용하지 않도록 하기 위해 off
+"rules": {
+        'react/react-in-jsx-scope': 'off',
+    },
+
+--실행
+package.json scripts에 추가
+"lint": "eslint ./src",
+"lint:fix": "eslint --fix ./src"
+
+npm run lint
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

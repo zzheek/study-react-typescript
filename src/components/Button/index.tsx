@@ -1,3 +1,4 @@
+import { Component } from 'react';
 import styled from "@emotion/styled";
 
 const Container = styled.button`
@@ -29,6 +30,11 @@ interface Props {
 // export const Button = ({ label, onClick }: Props) => {
 //     return <Container onClick={onClick}>{label}</Container>;
 // };
-export const Button = (props: Props) => {
-  return <Container onClick={props.onClick}>{props.label}</Container>;
-};
+
+// 함수형 -> 클래스 컴포넌트로 리팩토링
+export class Button extends Component<Props> {
+  render() {
+    const { label, onClick } = this.props;
+    return <Container onClick={onClick}>{label}</Container>;
+  }
+}

@@ -1,0 +1,4 @@
+fetch API를 사용하여 리액트와 서버 통신.
+
+(Axios 사용해보기
+MSW / Json-server 라이브러리 설치하여 사용해보기)

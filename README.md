@@ -1,1 +1,1 @@
-React 공부중
+React, Typescript 공부중입니다.
